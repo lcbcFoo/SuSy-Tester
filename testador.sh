@@ -4,6 +4,11 @@
 # Author: Carla Negri Lintzmayer (carlanl@ic.unicamp.br)
 #
 # Revision: Zanoni Dias (21/03/2015)
+#
+# Updated: Lucas Castro (20/03/2018)
+#	   - Check connection with SuSy
+#	   - Work with python
+# 	   - Work with generic amount of tests
 ###########################################################
 
 #!/bin/bash
@@ -22,8 +27,10 @@ hash curl 2>/dev/null ||
 
 
 
-# Caso o programa exija compilacao, descomente as linhas seguintes e modifique
-# conforme necessario
+# Caso o programa exija compilacao, por exemplo programas em c ou c++, descomente 
+# as linhas seguintes e modifique conforme necessario para compilar corretamente
+#
+# Nao esqueca de alterar a linha de excucao do programa na secao que roda os testes!!
 
 # Compilando o programa
 # echo "Compilando o programa..."
@@ -40,7 +47,7 @@ if [ ! -d "testes" ]; then
     echo "Criando diretorio de testes..."
     mkdir -p testes
 else
-    echo "Diretorio de testes existe, baixar novamente? (y/n)"
+    echo "Diretorio de testes existe, baixar testes novamente? (y/n)"
     read accept
 fi
 
@@ -96,6 +103,9 @@ fi
 for input in `ls -1 arq*in`; do
     output="${input%.in}.out"
     arq="arq$(printf '%02d' $i)"
+
+    # Executa o programa. Atere caso esteja rodando diferentes programas, como progamas em 
+    # c ou c++
     python3 ../lab$lab.py < $input > $output
 done
 
