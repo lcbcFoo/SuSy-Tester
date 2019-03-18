@@ -9,6 +9,8 @@
 #	   - Check connection with SuSy
 #	   - Work with python
 # 	   - Work with generic amount of tests
+# Updated: Jonas Cardoso (18/03/2019)
+#	   - Updated url
 ###########################################################
 
 #!/bin/bash
@@ -72,10 +74,10 @@ if [ "$accept" == "y" ]; then
             cur=$(printf "%02d" $i)
 
             # Entrada
-            curl https://susy.ic.unicamp.br:9999/mc102qrst/$lab/dados/arq$cur.in --insecure -O -s -L
+            curl https://susy.ic.unicamp.br:9999/mc102qr/$lab/dados/arq$cur.in --insecure -O -s -L
 
             # Resposta
-            curl https://susy.ic.unicamp.br:9999/mc102qrst/$lab/dados/arq$cur.out --insecure -s -L -o arq$cur.res
+            curl https://susy.ic.unicamp.br:9999/mc102qr/$lab/dados/arq$cur.out --insecure -s -L -o arq$cur.res
 
             # Como a quantidade de testes nao eh fixa precisamos testar se o arquivo que baixamos
             # ainda eh um teste, se nao for apagamos ele e terminamos
